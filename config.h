@@ -67,12 +67,14 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "google-chrome-stable", NULL };
+static const char *trayercmd[]  = { "/home/david/scripts/t-toggle.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_s,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_c, spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = browsercmd } },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = trayercmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_e,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_u,      rotatestack,    {.i = -1 } },
