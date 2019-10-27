@@ -4,14 +4,14 @@ Date: Mon, 8 Jul 2019 01:06:44 +0200
 Subject: [PATCH] Simulate toggleable fullscreen mode
 
 ---
- config.def.h |  1 +
+ config.h |  1 +
  dwm.c        | 14 ++++++++++++++
  2 files changed, 15 insertions(+)
 
-diff --git a/config.def.h b/config.def.h
+diff --git a/config.h b/config.h
 index 1c0b587..f774cc5 100644
---- a/config.def.h
-+++ b/config.def.h
+--- a/config.h
++++ b/config.h
 @@ -76,6 +76,7 @@ static Key keys[] = {
  	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
  	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
