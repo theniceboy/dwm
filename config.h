@@ -1,3 +1,5 @@
+#include <X11/XF86keysym.h>
+
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -69,13 +71,22 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "google-chrome-stable", NULL };
 static const char *trayercmd[]  = { "/home/david/scripts/t-toggle.sh", NULL };
 
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+
+static const char *wpcmd[]  = { "/home/david/scripts/wp-set.sh", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_s,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_c,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = trayercmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
+	{ MODKEY,                       XK_b,      spawn,          {.v = trayercmd } },
 	{ MODKEY|ShiftMask,             XK_e,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_u,      rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_e,      focusstack,     {.i = +1 } },
