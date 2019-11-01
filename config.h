@@ -77,9 +77,9 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[]  = { "google-chrome-stable", NULL };
 static const char *trayercmd[]  = { "/home/david/scripts/t-toggle.sh", NULL };
 
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *upvol[]   = { "/home/david/scripts/vol-up.sh",  NULL };
+static const char *downvol[] = { "/home/david/scripts/vol-down.sh",  NULL };
+static const char *mutevol[] = { "/home/david/scripts/vol-toggle.sh",  NULL };
 
 static const char *wpcmd[]  = { "/home/david/scripts/wp-change.sh", NULL };
 static const char *sktogglecmd[]  = { "/home/david/scripts/sk-toggle.sh", NULL };
