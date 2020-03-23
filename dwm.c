@@ -277,6 +277,9 @@ static void toggleview(const Arg *arg);
 static void togglewin(const Arg *arg);
 static void hidewin(const Arg *arg);
 static void restorewin(const Arg *arg);
+static void hideotherwins(const Arg *arg);
+static void restoreotherwins(const Arg *arg);
+static void focuswin(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
 static void unmanage(Client *c, int destroyed);
 static void unmapnotify(XEvent *e);
@@ -2390,6 +2393,78 @@ void restorewin(const Arg *arg) {
 			return;
 		}
 		--i;
+	}
+}
+
+void hideotherwins(const Arg *arg) {
+	Client *c = NULL, *i;
+	if (!selmon->sel)
+		return;
+	c = (Client *)selmon->sel;
+	for (i = selmon->clients; i; i = i->next) {
+		if (i != c && ISVISIBLE(i)) {
+			hide(i);
+			hiddenWinStack[++hiddenWinStackTop] = i;
+		}
+	}
+}
+
+void restoreotherwins(const Arg *arg) {
+	int i;
+	for (i = 0; i <= hiddenWinStackTop; ++i) {
+		if (HIDDEN(hiddenWinStack[i]) &&
+			hiddenWinStack[i]->tags == selmon->tagset[selmon->seltags]) {
+			show(hiddenWinStack[i]);
+			focus(hiddenWinStack[i]);
+			restack(selmon);
+			memcpy(hiddenWinStack + i, hiddenWinStack + i + 1,
+				   (hiddenWinStackTop - i) * sizeof(Client *));
+			--hiddenWinStackTop;
+			--i;
+		}
+	}
+}
+
+void focuswin(const Arg *arg) {
+	Client *c = NULL, *i;
+	int j, k;
+
+	if (arg->i > 0) {
+		for (c = selmon->sel->next;
+			 c && !(c->tags == selmon->tagset[selmon->seltags]); c = c->next)
+			;
+		if (!c)
+			for (c = selmon->clients;
+				 c && !(c->tags == selmon->tagset[selmon->seltags]);
+				 c = c->next)
+				;
+	} else {
+		for (i = selmon->clients; i != selmon->sel; i = i->next)
+			if (i->tags == selmon->tagset[selmon->seltags])
+				c = i;
+		if (!c)
+			for (; i; i = i->next)
+				if (i->tags == selmon->tagset[selmon->seltags])
+					c = i;
+	}
+
+	i = selmon->sel;
+
+	if (c && c != i) {
+		hide(i);
+		for (j = 0; j <= hiddenWinStackTop; ++j) {
+			if (HIDDEN(hiddenWinStack[j]) &&
+				hiddenWinStack[j]->tags == selmon->tagset[selmon->seltags] &&
+				hiddenWinStack[j] == c) {
+				show(c);
+				focus(c);
+				restack(selmon);
+				memcpy(hiddenWinStack + j, hiddenWinStack + j + 1,
+					   (hiddenWinStackTop - j) * sizeof(Client *));
+				hiddenWinStack[hiddenWinStackTop] = i;
+				return;
+			}
+		}
 	}
 }
 
