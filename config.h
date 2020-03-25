@@ -127,8 +127,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,    XK_l,                    incnmaster,     {.i = -1 } },
 	{ MODKEY,              XK_h,                    setmfact,       {.f = -0.05} },
 	{ MODKEY,              XK_l,                    setmfact,       {.f = +0.05} },
-	//{ MODKEY,              XK_y,                    focuswin,       {.i = +1}},
-	//{ MODKEY|ShiftMask,    XK_y,                    focuswin,       {.i = -1}},
 	{ MODKEY,              XK_k,                    hidewin,        {0} },
 	{ MODKEY|ShiftMask,    XK_k,                    restorewin,     {0} },
 	{ MODKEY,              XK_o,                    hideotherwins,  {0}},
