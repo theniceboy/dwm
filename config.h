@@ -99,6 +99,8 @@ static const char *setqwertycmd[]  = { "/home/david/scripts/setxmodmap-qwerty.sh
 
 static const char *suspendcmd[]  = { "/home/david/scripts/suspend.sh", NULL };
 
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+
 static Key keys[] = {
 	/* modifier            key                      function        argument */
 	{ MODKEY,              XK_s,                    spawn,          {.v = dmenucmd } },
@@ -115,6 +117,7 @@ static Key keys[] = {
 	{ MODKEY,              XK_backslash,            spawn,          {.v = mutevol } },
 	{ MODKEY,              XK_bracketright,         spawn,          {.v = upvol   } },
 	{ MODKEY,              XK_b,                    spawn,          {.v = wpcmd } },
+	{ 0,                   XK_Print,                spawn,          {.v = screenshotcmd } },
 	{ MODKEY|ShiftMask,    XK_e,                    rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,    XK_u,                    rotatestack,    {.i = -1 } },
 	{ MODKEY,              XK_e,                    focusstack,     {.i = +1 } },
