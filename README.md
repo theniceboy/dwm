@@ -31,6 +31,7 @@ Patches applied
 - [dwm-pertag-20170513-ceac8c9.diff](https://dwm.suckless.org/patches/pertag/)
 - [dwm-r1522-viewontag.diff](https://dwm.suckless.org/patches/viewontag/)
 - [dwm-rotatestack-20161021-ab9571b.diff](https://dwm.suckless.org/patches/rotatestack/)
+- [dwm-scratchpad-6.2.diff](https://dwm.suckless.org/patches/scratchpad/)
 - [dwm-vanitygaps-20190508-6.2.diff](https://dwm.suckless.org/patches/vanitygaps/)
 
 
