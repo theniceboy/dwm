@@ -1,33 +1,32 @@
-David's build of dwm
+我的 dwm 构建
 ============================
-[中文版](./README_cn.md)
+[English Ver.](./README.md)
 
-dwm is an extremely fast, small, and dynamic window manager for X.
+dwm 是一个非常快速, 小巧并使用动态管理窗口的窗口管理器
 
-BTW, my scripts are in [this repo](https://github.com/theniceboy/scripts).
+顺便说一句, 我的脚本都存放在 [此仓库](https://github.com/theniceboy/scripts) 中
 
-Requirements
+要求
 ------------
+构建 dwm 前, 你需要有 `Xlib` 头文件
 In order to build dwm you need the Xlib header files.
 
 
-Installation
+安装
 ------------
-Edit config.mk to match your local setup (dwm is installed into
-the /usr/local namespace by default).
+编辑 `config.mk` 来匹配你的本地设置 (dwm 将默认安装在 /usr/local)
 
-Afterwards enter the following command to build and install dwm (if
-necessary as root):
+之后通过以下命令安装 dwm (必须使用 root 用户):
 
     make clean install
 
-Patches applied
+应用的自定义补丁
 ---------------
 - [dwm-alpha-20180613-b69c870.diff](https://dwm.suckless.org/patches/alpha/)
 - [dwm-autostart-20161205-bb3bd6f.diff](https://dwm.suckless.org/patches/autostart/)
 - [dwm-awesomebar-20191003-80e2a76.diff](https://dwm.suckless.org/patches/awesomebar/)
 - [dwm-fullscreen-6.2.diff](https://dwm.suckless.org/patches/fullscreen/)
-- [dwm-hide-and-restore.diff](https://github.com/theniceboy/dwm-hide-and-restore-win.diff) (a custom patch I wrote)
+- [dwm-hide-and-restore.diff](https://github.com/theniceboy/dwm-hide-and-restore-win.diff) (我写的自定义补丁)
 - [dwm-hide_vacant_tags-6.2.diff](https://dwm.suckless.org/patches/hide_vacant_tags/)
 - [dwm-noborder-6.2.diff](https://dwm.suckless.org/patches/noborder/)
 - [dwm-pertag-20170513-ceac8c9.diff](https://dwm.suckless.org/patches/pertag/)
@@ -37,21 +36,19 @@ Patches applied
 - [dwm-vanitygaps-20190508-6.2.diff](https://dwm.suckless.org/patches/vanitygaps/)
 
 
-Running dwm
+运行 dwm
 -----------
-Add the following line to your .xinitrc to start dwm using startx:
+将以下行添加到 .xinitrc 中来通过 `startx` 启动 dwm:
 
     exec dwm
 
-In order to connect dwm to a specific display, make sure that
-the DISPLAY environment variable is set correctly, e.g.:
+如果你需要使用多显示器启动 dwm, 你需要设置屏幕变量, 以下是一个例子:
 
     DISPLAY=foo.bar:1 exec dwm
 
-(This will start dwm on display :1 of the host foo.bar.)
+(这样将会启动 dwm 并显示在显示器一上)
 
-In order to display status info in the bar, you can do something
-like this in your .xinitrc:
+如果你想自定义你的状态栏, 你可以在 .xinitrc 添加行, 以下是一个例子:
 
     while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
     do
